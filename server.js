@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
-
 const mongoConnectionString = `mongodb://${process.env.DBUSERNAME}:${encodeURIComponent(process.env.DBPASSWORD)}@${process.env.DBHOST}/${process.env.DBDATABASENAME}?authSource=admin`;
 
 mongoose.connect(mongoConnectionString);
@@ -17,6 +16,9 @@ app.use(express.json());
 
 const countriesRouter = require('./routes/countries');
 app.use('/countries', countriesRouter);
+
+const salesRepRouter = require('./routes/salesrep');
+app.use('/salesrep', salesRepRouter);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
